@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+
+<validators>
+    <field name="name">
+        <field-validator type="requiredstring" short-circuit="true">
+            <param name="trim">true</param>
+            <param name="fieldName">bookingError</param>
+            <message>名字是必填的</message>
+        </field-validator>
+    </field>
+
+    <field name="from">
+        <field-validator type="requiredstring" short-circuit="true">
+            <param name="trim">true</param>
+            <param name="fieldName">bookingError</param>
+            <message>始发城市是必填的</message>
+        </field-validator>
+    </field>
+
+    <field name="to">
+        <field-validator type="requiredstring" short-circuit="true">
+            <param name="trim">true</param>
+            <param name="fieldName">bookingError</param>
+            <message>目的城市是必填的</message>
+        </field-validator>
+    </field>
+
+    <field name="date">
+        <field-validator type="required" short-circuit="true">
+            <param name="trim">true</param>
+            <param name="fieldName">bookingError</param>
+            <message>出发日期是必填的</message>
+        </field-validator>
+    </field>
+</validators>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+
+    <package name="default" extends="struts-default">
+        <interceptors>
+            <interceptor name="interceptors1" class="interceptor.CheckLoginInterceptor"/>
+        </interceptors>
+
+        <action name="login" class="com.action.LoginAction" method="loginExecute">
+            <result name="success">/WEB-INF/main.jsp</result>
+            <result name="input">/LoginSign.jsp</result>
+        </action>
+
+        <action name="sign" class="com.action.LoginAction" method="signExecute">
+            <result name="success">/LoginSign.jsp</result>
+            <result name="input">/LoginSign.jsp</result>
+        </action>
+
+        <action name="booking" class="com.action.BookingAction">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="chain">firstPage</result>
+            <result name="input">WEB-INF/Booking.jsp</result>
+        </action>
+
+        <action name="guide" class="com.action.aAction">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="0">/WEB-INF/main.jsp</result>
+            <result name="1">/WEB-INF/ChangePassword.jsp</result>
+            <result name="2">/WEB-INF/Booking.jsp</result>
+            <result name="3" type="chain">firstPage</result>
+            <result name="login" type="redirect">LoginSign.jsp</result>
+            <result name="input">WEB-INF/main.jsp</result>
+            <result name="stay">WEB-INF/main.jsp</result>
+        </action>
+
+        <action name="change_pass" class="com.action.ChangePasswordAction">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="dispatcher">WEB-INF/ChangePassword.jsp</result>
+            <result name="input" type="dispatcher">WEB-INF/ChangePassword.jsp</result>
+        </action>
+
+        <action name="firstPage" class="com.action.BookingPageAction" method="firstPage">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">WEB-INF/ShowBooking.jsp</result>
+        </action>
+
+        <action name="nextPage" class="com.action.BookingPageAction" method="nextPage">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">WEB-INF/ShowBooking.jsp</result>
+        </action>
+
+        <action name="formPage" class="com.action.BookingPageAction" method="formPage">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">WEB-INF/ShowBooking.jsp</result>
+        </action>
+
+        <action name="nowPage" class="com.action.BookingPageAction" method="nowPage">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">WEB-INF/ShowBooking.jsp</result>
+        </action>
+
+        <action name="queryBooking" class="com.action.BookingPageAction" method="queryBooking">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="chain">firstPage</result>
+            <result name="input">WEB-INF/ShowBooking.jsp</result>
+        </action>
+        
+        <action name="deleteBooking" class="com.action.BookingPageAction" method="deleteBooking">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="chain">nowPage</result>
+        </action>
+
+        <action name="readyToChange" class="com.action.BookingPageAction" method="changeBooking">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">WEB-INF/ChangeBooking.jsp</result>
+        </action>
+
+        <action name="changeBooking" class="com.action.ChangeBookingAction" method="execute">
+            <interceptor-ref name="interceptors1"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="chain">nowPage</result>
+            <result name="input">WEB-INF/ChangeBooking.jsp</result>
+        </action>
+    </package>
+
+</struts>

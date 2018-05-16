@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.domain.User" table="personal_info" schema="planebooking_service">
+        <id name="userId" column="personal_id">
+            <generator class="increment"/>
+        </id>
+        <property name="username" column="personal_number" not-null="true" length="20"/>
+        <property name="password" column="personal_password" not-null="true" length="20"/>
+    </class>
+</hibernate-mapping>

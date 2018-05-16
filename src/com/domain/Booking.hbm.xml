@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.domain.Booking" table="booking" schema="planebooking_service">
+        <id name="bookingId" column="booking_id">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="booking_name"/>
+        <property name="from" column="booking_from"/>
+        <property name="to" column="booking_to"/>
+        <property name="date" column="booking_date"/>
+
+        <many-to-one name="user" class="com.domain.User" column="userid" not-null="true" cascade="save-update"/>
+    </class>
+</hibernate-mapping>
